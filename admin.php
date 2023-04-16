@@ -155,9 +155,7 @@
                  $<?php echo (int)$recent_product['sale_price']; ?>
                   </span>
                 </h4>
-                <span class="list-group-item-text pull-right">
-                <?php echo remove_junk(first_character($recent_product['categorie'])); ?>
-              </span>
+                
           </a>
       <?php endforeach; ?>
     </div>
