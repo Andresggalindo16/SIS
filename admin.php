@@ -81,7 +81,7 @@
           <thead>
            <tr>
              <th>Título</th>
-             <th>Total vendido</th>
+             <th>Cantidad de Ventas</th>
              <th>Cantidad total</th>
            <tr>
           </thead>
@@ -150,7 +150,7 @@
             <a class="list-group-item clearfix" href="edit_product.php?id=<?php echo    (int)$recent_product['id'];?>">
                 <h4 class="list-group-item-heading">                   
                 <?php echo remove_junk(first_character($recent_product['name']));?>
-                  <span class="label label-warning pull-right">
+                  <span class="label label-success pull-right">
                  $<?php echo (int)$recent_product['sale_price']; ?>
                   </span>
                 </h4>
