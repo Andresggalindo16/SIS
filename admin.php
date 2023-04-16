@@ -21,29 +21,7 @@
    </div>
 </div>
   <div class="row">
-    <div class="col-md-3">
-       <div class="panel panel-box clearfix">
-         <div class="panel-icon pull-left bg-green">
-          <i class="glyphicon glyphicon-user"></i>
-        </div>
-        <div class="panel-value pull-right">
-          <h2 class="margin-top"> <?php  echo $c_user['total']; ?> </h2>
-          <p class="text-muted">Usuarios</p>
-        </div>
-       </div>
-    </div>
-    <div class="col-md-3">
-       <div class="panel panel-box clearfix">
-         <div class="panel-icon pull-left bg-red">
-          <i class="glyphicon glyphicon-list"></i>
-        </div>
-        <div class="panel-value pull-right">
-          <h2 class="margin-top"> <?php  echo $c_categorie['total']; ?> </h2>
-          <p class="text-muted">Categorías</p>
-        </div>
-       </div>
-    </div>
-    <div class="col-md-3">
+  <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-blue">
           <i class="glyphicon glyphicon-shopping-cart"></i>
@@ -53,8 +31,9 @@
           <p class="text-muted">Productos</p>
         </div>
        </div>
-    </div>
-    <div class="col-md-3">
+    </div> 
+
+  <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-yellow">
           <i class="glyphicon glyphicon-usd"></i>
@@ -65,6 +44,28 @@
         </div>
        </div>
     </div>
+    <!-- <div class="col-md-3">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-red">
+          <i class="glyphicon glyphicon-list"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $c_categorie['total']; ?> </h2>
+          <p class="text-muted">Categorías</p>
+        </div>
+       </div>
+    </div> --> 
+    <div class="col-md-4">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-green">
+          <i class="glyphicon glyphicon-user"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $c_user['total']; ?> </h2>
+          <p class="text-muted">Usuarios</p>
+        </div>
+       </div>
+    </div>       
 </div>
 
   <div class="row">
