@@ -21,13 +21,16 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th class="text-center" style="width: 50px;">#</th>                
+                <th class="text-center" style="width: 50px;">Ref</th>                
                 <th> Descripción </th>
                 <th class="text-center" style="width: 10%;"> Categoría </th>
                 <th class="text-center" style="width: 10%;"> Stock </th>
-                <th class="text-center" style="width: 10%;"> Precio de compra </th>
+                <th class="text-center" style="width: 10%;"> Etiqueta </th>
                 <th class="text-center" style="width: 10%;"> Precio de venta </th>
-                <th class="text-center" style="width: 10%;"> Agregado </th>
+                <th class="text-center" style="width: 10%;"> Precio de compra </th>
+                <th class="text-center" style="width: 10%;"> IVA </th>
+                <th class="text-center" style="width: 10%;"> Almacen por defecto </th>
+                <th class="text-center" style="width: 10%;"> Fecha Creación </th>
                 <th class="text-center" style="width: 100px;"> Acciones </th>
               </tr>
             </thead>
@@ -38,8 +41,11 @@
                 <td> <?php echo remove_junk($product['name']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($product['label']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['sale_price']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
+                <td class="text-center"> <?php echo read_date($product['iva']); ?></td>
+                <td class="text-center"> <?php echo read_date($product['store']); ?></td>
                 <td class="text-center"> <?php echo read_date($product['date']); ?></td>
                 <td class="text-center">
                   <div class="btn-group">

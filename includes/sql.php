@@ -210,10 +210,10 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,c.name";
+     $sql  =" SELECT p.iva,p.store,p.date,p.status_buy,p.status_sale,p.label,p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date";
     $sql  .=" AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
-    $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
+    /* $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id"; */
     $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
     $sql  .=" ORDER BY p.id ASC";
     return find_by_sql($sql);
