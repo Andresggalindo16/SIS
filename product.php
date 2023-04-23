@@ -23,7 +23,7 @@
               <tr>
                 <th class="text-center" style="width: 50px;">Ref</th>                
                 <th> Descripción </th>
-                <th class="text-center" style="width: 10%;"> Categoría </th>
+                
                 <th class="text-center" style="width: 10%;"> Stock </th>
                 <th class="text-center" style="width: 10%;"> Etiqueta </th>
                 <th class="text-center" style="width: 10%;"> Precio de venta </th>
@@ -39,7 +39,7 @@
               <tr>
                 <td class="text-center"><?php echo count_id();?></td>                
                 <td> <?php echo remove_junk($product['name']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
+               
                 <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['label']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['sale_price']); ?></td>
