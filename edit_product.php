@@ -185,7 +185,8 @@ if(!$product){
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-folder-close"></i>
                 </span>
-                <input type="text" class="form-control" name="label" placeholder="Almacen">
+                <!-- cambio de name -->
+                <input type="text" class="form-control" name="almacen" placeholder="Almacen">
               </div>
             </div>
             <div class="form-group">
@@ -193,7 +194,8 @@ if(!$product){
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-usd"></i>
                 </span>
-                <select class="form-control" name="status_buy">
+                <!-- cambio de name -->
+                <select class="form-control" name="IVA"> 
                   <option value="">Aplica IVA</option>
                   <option value="En Venta">SI</option>
                   <option value="Sin Stock">NO</option>
@@ -207,7 +209,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-shopping-cart"></i>
                     </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Cantidad">
+                    <input type="number"  min="1" pattern="^[0-9]+" class="form-control" name="product-quantity" placeholder="Cantidad">
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -236,7 +238,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-check"></i>
                     </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Stock Deseado">
+                    <input type="number" class="form-control" name="deseado" placeholder="Stock Deseado">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -244,7 +246,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class=" glyphicon glyphicon-flag"></i>
                     </span>
-                    <input type="number" class="form-control" name="buying-price" placeholder="Stock minimo">
+                    <input type="number" class="form-control" name="stock_min" placeholder="Stock minimo">
                   </div>
                 </div>
               </div>
@@ -256,7 +258,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-arrow-down"></i>
                     </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Peso">
+                    <input type="number" class="form-control" name="peso" placeholder="Peso">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -264,7 +266,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-info-sign"></i>
                     </span>
-                    <select class="form-control" name="status_buy">
+                    <select class="form-control" name="unidad_peso">
                       <option value="">Unidad</option>
                       <option value="Kilo">Kilogramo</option>
                       <option value="Gramo">Gramo</option>
@@ -283,7 +285,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-tint"></i>
                     </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Volumen">
+                    <input type="number" class="form-control" name="volumen" placeholder="Volumen">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -291,7 +293,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-info-sign"></i>
                     </span>
-                    <select class="form-control" name="status_buy">
+                    <select class="form-control" name="unidad_volumen">
                       <option value="">Unidad</option>
                       <option value="cm3">Centimetro Cúbico</option>
                       <option value="m3">Metro Cúbico</option>
@@ -309,7 +311,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-resize-vertical"></i>
                     </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Longitud Alto">
+                    <input type="number" class="form-control" name="alto" placeholder="Longitud Alto">
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -317,7 +319,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-resize-horizontal"></i>
                     </span>
-                    <input type="number" class="form-control" name="buying-price" placeholder="Longituda Ancho">
+                    <input type="number" class="form-control" name="ancho" placeholder="Longituda Ancho">
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -325,7 +327,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class=" glyphicon glyphicon-resize-full"></i>
                     </span>
-                    <input type="number" class="form-control" name="saleing-price" placeholder="Longitud Profunda">
+                    <input type="number" class="form-control" name="profundo" placeholder="Longitud Profunda">
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -333,7 +335,7 @@ if(!$product){
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-info-sign"></i>
                     </span>
-                    <select class="form-control" name="status_buy">
+                    <select class="form-control" name="unidad_longitud">
                       <option value="">Unidad de medida</option>
                       <option value="Metros">m</option>
                       <option value="Centimetros">cm</option>
@@ -350,7 +352,7 @@ if(!$product){
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-tags"></i>
                 </span>
-                <select class="form-control" name="status_buy">
+                <select class="form-control" name="tipo_producto">
                   <option value="">Naturaleza del Producto</option>
                   <option value="">Materia Prima</option>
                   <option value="">Producto</option>
@@ -363,10 +365,9 @@ if(!$product){
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-th-large"></i>
                 </span>
-                <textarea type="text" class="form-control" name="product-title" placeholder="Nota Adicional"></textarea>              
+                <textarea type="text" class="form-control" name="nota" placeholder="Nota Adicional"></textarea>              
               </div>
-            </div>
-              <button type="submit" name="product" class="btn btn-danger">Actualizar</button>
+            </div>              <button type="submit" name="product" class="btn btn-danger">Actualizar</button>
           </form>
          </div>
         </div>
