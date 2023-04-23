@@ -35,14 +35,13 @@
         foreach ($results as $result) {
 
           $html .= "<tr>";
-
           $html .= "<td id=\"s_name\">".$result['name']."</td>";
           $html .= "<input type=\"hidden\" name=\"s_id\" value=\"{$result['id']}\">";
           $html  .= "<td>";
           $html  .= "<input type=\"text\" class=\"form-control\" name=\"price\" value=\"{$result['sale_price']}\">";
           $html  .= "</td>";
           $html .= "<td id=\"s_qty\">";
-          $html .= "<input type=\"text\" class=\"form-control\" name=\"quantity\" value=\"1\">";
+          $html .= "<input type=\"number\" class=\"form-control\" min=\"0\" max=\"{$result['quantity']}\" name=\"quantity\" value=\"{$result['quantity']}\">";
           $html  .= "</td>";
           $html  .= "<td>";
           $html  .= "<input type=\"text\" class=\"form-control\" name=\"total\" value=\"{$result['sale_price']}\">";
@@ -52,9 +51,11 @@
           $html  .= "</td>";
           $html  .= "<td>";
           $html  .= "<button type=\"submit\" name=\"add_sale\" class=\"btn btn-primary\">Agregar</button>";
+         /*  $html  .= "</td>";
+          $html  .= "<td>"; 
+          $html  .= "<button onClick=location.href=\"add_sale.php\" name=\"add_sale\" class=\"btn btn-danger\">Eliminar</button>";*/
           $html  .= "</td>";
           $html  .= "</tr>";
-
         }
     } else {
         $html ='<tr><td>El producto no se encuentra registrado en la base de datos</td></tr>';

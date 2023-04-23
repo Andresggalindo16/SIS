@@ -138,7 +138,7 @@ if (isset($_POST['add_product'])) {
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-shopping-cart"></i>
                     </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Cantidad">
+                    <input type="number"  min="1" pattern="^[0-9]+" class="form-control" name="product-quantity" placeholder="Cantidad">
                   </div>
                 </div>
                 <div class="col-md-4">
