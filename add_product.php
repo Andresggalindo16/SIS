@@ -94,8 +94,8 @@ if (isset($_POST['add_product'])) {
                 </span>
                 <select class="form-control" name="status_sale">
                   <option value="">Estado (venta)</option>
-                  <option value="En Venta">En Venta</option>
-                  <option value="Sin Stock">Sin Stock</option>
+                  <option value="En Venta">Activa</option>
+                  <option value="Sin Stock">Inactiva</option>
                 </select>
               </div>
             </div>
@@ -114,13 +114,9 @@ if (isset($_POST['add_product'])) {
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="glyphicon glyphicon-shopping-cart"></i>
+                  <i class="glyphicon glyphicon-folder-close"></i>
                 </span>
-                <select class="form-control" name="product-categorie">
-                  <option value="">Almacén por defecto</option>
-                  <option value="1">En Venta</option>
-                  <option value="2">Sin Stock</option>
-                </select>
+                <input type="text" class="form-control" name="label" placeholder="Almacen">
               </div>
             </div>
             <div class="form-group">
@@ -128,7 +124,11 @@ if (isset($_POST['add_product'])) {
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-usd"></i>
                 </span>
-                <input type="text" class="form-control" name="product-title" placeholder="Tasa IVA">
+                <select class="form-control" name="status_buy">
+                  <option value="">Aplica IVA</option>
+                  <option value="En Venta">SI</option>
+                  <option value="Sin Stock">NO</option>
+                </select>
               </div>
             </div>
             <div class="form-group">
@@ -159,6 +159,147 @@ if (isset($_POST['add_product'])) {
                 </div>
               </div>
             </div>
+            <!-- Hace falta meterlo en la BD -->
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-check"></i>
+                    </span>
+                    <input type="number" class="form-control" name="product-quantity" placeholder="Stock Deseado">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class=" glyphicon glyphicon-flag"></i>
+                    </span>
+                    <input type="number" class="form-control" name="buying-price" placeholder="Stock minimo">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-arrow-down"></i>
+                    </span>
+                    <input type="number" class="form-control" name="product-quantity" placeholder="Peso">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-info-sign"></i>
+                    </span>
+                    <select class="form-control" name="status_buy">
+                      <option value="">Unidad</option>
+                      <option value="Kilo">Kilogramo</option>
+                      <option value="Gramo">Gramo</option>
+                      <option value="Tonelada">Tonelada</option>
+                      <option value="Miligramos">Miligramos</option>
+                      <option value="Libra">Libra</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-tint"></i>
+                    </span>
+                    <input type="number" class="form-control" name="product-quantity" placeholder="Volumen">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-info-sign"></i>
+                    </span>
+                    <select class="form-control" name="status_buy">
+                      <option value="">Unidad</option>
+                      <option value="cm3">Centimetro Cúbico</option>
+                      <option value="m3">Metro Cúbico</option>
+                      <option value="Onza">Onza</option>
+                      <option value="Galon">Galón</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-resize-vertical"></i>
+                    </span>
+                    <input type="number" class="form-control" name="product-quantity" placeholder="Longitud Alto">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-resize-horizontal"></i>
+                    </span>
+                    <input type="number" class="form-control" name="buying-price" placeholder="Longituda Ancho">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class=" glyphicon glyphicon-resize-full"></i>
+                    </span>
+                    <input type="number" class="form-control" name="saleing-price" placeholder="Longitud Profunda">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-info-sign"></i>
+                    </span>
+                    <select class="form-control" name="status_buy">
+                      <option value="">Unidad de medida</option>
+                      <option value="Metros">m</option>
+                      <option value="Centimetros">cm</option>
+                      <option value="Milimetros">mm</option>
+                      <option value="Pie">pie</option>
+                      <option value="Pulgada">pulgada</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-tags"></i>
+                </span>
+                <select class="form-control" name="status_buy">
+                  <option value="">Naturaleza del Producto</option>
+                  <option value="">Materia Prima</option>
+                  <option value="">Producto</option>
+                </select>
+              </div>
+
+            </div>            
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-th-large"></i>
+                </span>
+                <textarea type="text" class="form-control" name="product-title" placeholder="Nota Adicional"></textarea>              
+              </div>
+            </div>
+            
+
+
             <button type="submit" name="add_product" class="btn btn-danger">Agregar producto</button>
           </form>
         </div>
