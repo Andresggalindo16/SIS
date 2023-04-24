@@ -210,7 +210,18 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.iva,p.store,p.date,p.status_buy,p.status_sale,p.label,p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date";
+     $sql  =" SELECT p.iva,p.store,p.date,p.status_buy,p.status_sale,p.label,p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date, p.deseado,
+     p.stock_min,
+     p.peso,
+     p.unidad_peso,
+     p.volumen,
+     p.unidad_volumen,
+     p.alto,
+     p.ancho,
+     p.profundo,
+     p.unidad_longitud,
+     p.tipo_producto,
+     p.nota";
     $sql  .=" FROM products p";
     /* $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id"; */
     $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
@@ -218,6 +229,8 @@ function tableExists($table){
     return find_by_sql($sql);
 
    }
+
+
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest

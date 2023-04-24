@@ -8,17 +8,29 @@ $all_photo = find_all('media');
 ?>
 <?php
 if (isset($_POST['add_product'])) {
-  $req_fields = array('product-title', 'product-categorie', 'product-quantity', 'buying-price', 'saleing-price');
+  $req_fields = array('name', 'product-quantity', 'buying-price', 'saleing-price');
   validate_fields($req_fields);
   if (empty($errors)) {
-    $p_name  = remove_junk($db->escape($_POST['product-title']));
-    $p_cat   = remove_junk($db->escape($_POST['product-categorie']));
-    $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
-    $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-    $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
+    $p_name  = remove_junk($db->escape($_POST['name']));
+    /* $p_cat   = remove_junk($db->escape($_POST['product-categorie'])); */
+    $p_qty   = remove_junk($db->escape($_POST['quantity']));
+    $p_buy   = remove_junk($db->escape($_POST['buying_price']));
+    $p_sale  = remove_junk($db->escape($_POST['saleing_price']));
     $p_label = remove_junk($db->escape($_POST['label']));
     $p_satus_buy  = remove_junk($db->escape($_POST['status_buy']));
     $p_satus_sale = remove_junk($db->escape($_POST['status_sale']));
+    /* $p_almacen = remove_junk($db->escape($_POST['almacen'])); */
+    $p_deseado   = remove_junk($db->escape($_POST['deseado']));
+    $p_stock_min = remove_junk($db->escape($_POST['stock_min']));
+    $p_peso      = remove_junk($db->escape($_POST['peso']));
+    $p_volumen   = remove_junk($db->escape($_POST['volumen']));
+    $p_alto      = remove_junk($db->escape($_POST['alto']));
+    $p_ancho     = remove_junk($db->escape($_POST['ancho']));
+    $profundo    = remove_junk($db->escape($_POST['profundo']));
+    $p_unidad_longitud = remove_junk($db->escape($_POST['unidad_longitud']));
+    $p_tipo_producto = remove_junk($db->escape($_POST['tipo_producto']));
+    $p_nota      = remove_junk($db->escape($_POST['nota']));
+    
     if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
       $media_id = '0';
     } else {
@@ -26,9 +38,10 @@ if (isset($_POST['add_product'])) {
     }
     $date    = make_date();
     $query  = "INSERT INTO products (";
-    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale";
+    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, tipo_producto, nota";
     $query .= ") VALUES (";
-    $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', '{$p_satus_buy}', '{$p_satus_sale}'";
+    $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', 
+               '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_tipo_producto}', '{$p_nota}'";
     $query .= ")";
     $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'";
     if ($db->query($query)) {
@@ -68,7 +81,7 @@ if (isset($_POST['add_product'])) {
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-asterisk"></i>
                 </span>
-                <input disabled type="text" style="width:20%;" class="form-control" name="product-title" placeholder="Ref">
+                <input disabled type="text" style="width:20%;" class="form-control" name="id" placeholder="Ref">
               </div>
             </div>
             <div class="form-group">
@@ -76,7 +89,7 @@ if (isset($_POST['add_product'])) {
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-th-large"></i>
                 </span>
-                <input type="text" class="form-control" name="product-title" placeholder="Descripción">
+                <input type="text" class="form-control" name="name" placeholder="Descripción">
               </div>
             </div>
             <div class="form-group">
@@ -94,8 +107,8 @@ if (isset($_POST['add_product'])) {
                 </span>
                 <select class="form-control" name="status_sale">
                   <option value="">Estado (venta)</option>
-                  <option value="En Venta">Activa</option>
-                  <option value="Sin Stock">Inactiva</option>
+                  <option value="activo">Activa</option>
+                  <option value="inactiva">Inactiva</option>
                 </select>
               </div>
             </div>
@@ -128,8 +141,8 @@ if (isset($_POST['add_product'])) {
                 <!-- cambio de name -->
                 <select class="form-control" name="IVA"> 
                   <option value="">Aplica IVA</option>
-                  <option value="En Venta">SI</option>
-                  <option value="Sin Stock">NO</option>
+                  <option value="si">SI</option>
+                  <option value="no">NO</option>
                 </select>
               </div>
             </div>
@@ -148,7 +161,7 @@ if (isset($_POST['add_product'])) {
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-usd"></i>
                     </span>
-                    <input type="number" class="form-control" name="buying-price" placeholder="Precio de compra">
+                    <input type="number" class="form-control" name="buying_price" placeholder="Precio de compra">
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -156,7 +169,7 @@ if (isset($_POST['add_product'])) {
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-usd"></i>
                     </span>
-                    <input type="number" class="form-control" name="saleing-price" placeholder="Precio de venta">
+                    <input type="number" class="form-control" name="saleing_price" placeholder="Precio de venta">
                   </div>
                 </div>
               </div>
@@ -284,9 +297,9 @@ if (isset($_POST['add_product'])) {
                   <i class="glyphicon glyphicon-tags"></i>
                 </span>
                 <select class="form-control" name="tipo_producto">
-                  <option value="">Naturaleza del Producto</option>
-                  <option value="">Materia Prima</option>
-                  <option value="">Producto</option>
+                  <option value="natural_producto">Naturaleza del Producto</option>
+                  <option value="materia_prima">Materia Prima</option>
+                  <option value="producto">Producto</option>
                 </select>
               </div>
 
