@@ -29,17 +29,17 @@
                 <th class="text-center" style="width: 10%;"> Precio de venta </th>
                 <th class="text-center" style="width: 10%;"> Precio de compra </th>
                 <th class="text-center" style="width: 10%;"> IVA </th>
-           <!--      <th class="text-center" style="width: 10%;"> Almacen por defecto </th> -->
-                <th class="text-center" style="width: 10%;"> Fecha Creación </th>
-                <th class="text-center" style="width: 10%;"> Peso </th>
-               <!--  <th class="text-center" style="width: 10%;"> Volumen </th> -->
-                <th class="text-center" style="width: 10%;"> Alto </th>
-                <th class="text-center" style="width: 10%;"> Ancho </th>
-                <th class="text-center" style="width: 10%;"> Profundo </th>
-                <th class="text-center" style="width: 10%;"> Unidad Longitud </th>
-                <th class="text-center" style="width: 10%;"> Tipo Producto </th>
-                <th class="text-center" style="width: 10%;"> Nota </th>
-                <th class="text-center" style="width: 100px;"> Acciones </th>
+                <th class="text-center" style="width: 10%;"> Almacen por defecto </th>
+           <!-- <th class="text-center" style="width: 10%;"> Peso </th> -->
+           <!--  <th class="text-center" style="width: 10%;"> Volumen </th> -->
+           <!-- <th class="text-center" style="width: 10%;"> Alto </th>
+           <th class="text-center" style="width: 10%;"> Ancho </th>
+           <th class="text-center" style="width: 10%;"> Profundo </th> -->
+           <!-- <th class="text-center" style="width: 10%;"> Unidad Longitud </th> -->
+           <th class="text-center" style="width: 10%;"> Tipo Producto </th>
+           <th class="text-center" style="width: 10%;"> Nota </th>
+           <th class="text-center" style="width: 10%;"> Fecha Creación </th>
+           <th class="text-center" style="width: 100px;"> Acciones </th>
               </tr>
             </thead>
             <tbody>
@@ -53,15 +53,10 @@
                 <td class="text-center"> <?php echo ($product['status_sale']); ?></td>
                 <td class="text-center"> <?php echo ($product['status_buy']); ?></td>
                 <td class="text-center"> <?php echo ($product['iva']); ?></td>
-             <!--    <td class="text-center"> <?php echo ($product['store']); ?></td> -->
-                <td class="text-center"> <?php echo read_date($product['date']); ?></td>
-                <td class="text-center"> <?php echo ($product['peso']); ?></td>
-                <td class="text-center"> <?php echo (($product['alto'])); ?></td>
-                <td class="text-center"> <?php echo (($product['ancho'])); ?></td>
-                <td class="text-center"> <?php echo (($product['profundo'])); ?></td>
-                <td class="text-center"> <?php echo (($product['unidad_longitud'])); ?></td>
-                <td class="text-center"> <?php echo (($product['tipo_producto'])); ?></td>
-                <td class="text-center"> <?php echo (($product['nota'])) ?></td>
+                <td class="text-center"> <?php echo ($product['store']); ?></td>
+             <td class="text-center"> <?php echo (($product['tipo_producto'])); ?></td>
+             <td class="text-center"> <?php echo (($product['nota'])) ?></td>
+             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
                 <td class="text-center"> 
                   <div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
