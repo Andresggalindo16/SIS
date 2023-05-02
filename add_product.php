@@ -29,6 +29,7 @@ if (isset($_POST['add_product'])) {
     $profundo    = remove_junk($db->escape($_POST['profundo']));
     $p_unidad_longitud = remove_junk($db->escape($_POST['unidad_longitud']));
     $p_unidad_volumen = remove_junk($db->escape($_POST['unidad_volumen']));
+    $p_unidad_peso = remove_junk($db->escape($_POST['unidad_peso']));
     $p_tipo_producto = remove_junk($db->escape($_POST['tipo_producto']));
     $p_nota      = remove_junk($db->escape($_POST['nota']));
     
@@ -39,10 +40,11 @@ if (isset($_POST['add_product'])) {
     }
     $date    = make_date();
     $query  = "INSERT INTO products (";
-    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, unidad_volumen, tipo_producto, nota";
+    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, unidad_volumen, unidad_peso, tipo_producto, nota, almacen";
     $query .= ") VALUES (";
     $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', 
-               '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_unidad_volumen}', '{$p_tipo_producto}', '{$p_nota}'";
+                '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_unidad_volumen}', '{$p_tipo_producto}', 
+                '{$p_nota}', '{$p_volumen}', '{$p_unidad_peso}'";
     $query .= ")";
     /* $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'"; */
     if ($db->query($query)) {

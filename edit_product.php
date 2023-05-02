@@ -38,6 +38,7 @@ if (isset($_POST['product'])) {
     $p_iva    = remove_junk($db->escape($_POST['iva']));
     $p_unidad_longitud = remove_junk($db->escape($_POST['unidad_longitud']));
     $p_unidad_volumen = remove_junk($db->escape($_POST['unidad_volumen']));
+    $p_unidad_peso = remove_junk($db->escape($_POST['unidad_peso']));
     $p_tipo_producto = remove_junk($db->escape($_POST['tipo_producto']));
     $p_nota      = remove_junk($db->escape($_POST['nota']));
     if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
@@ -64,6 +65,7 @@ if (isset($_POST['product'])) {
     ,profundo = '{$profundo}' 
     ,unidad_longitud = '{$p_unidad_longitud}'
     ,unidad_volumen = '{$p_unidad_volumen}'
+    ,unidad_peso = '{$p_unidad_peso}'
     ,tipo_producto = '{$p_tipo_producto}' 
     ,nota = '{$p_nota}'
     ,almacen = '{$p_almacen}'
