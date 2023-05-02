@@ -252,7 +252,7 @@ if (isset($_POST['product'])) {
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-usd"></i>
                   </span>
-                  <input type="number" class="form-control" name="status_buy" value="<?php echo ($product['buy_price']);?>" placeholder="Precio de compra">
+                  <input type="number" class="form-control" name="buy_price" value="<?php echo ($product['buy_price']);?>" placeholder="Precio de compra">
                 </div>
               </div>
               <div class="col-md-4">
@@ -260,7 +260,7 @@ if (isset($_POST['product'])) {
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-usd"></i>
                   </span>
-                  <input type="number" class="form-control" name="status_sale" value="<?php echo ($product['sale_price']);?>" placeholder="Precio de venta">
+                  <input type="number" class="form-control" name="sale_price" value="<?php echo ($product['sale_price']);?>" placeholder="Precio de venta">
                 </div>
               </div>
             </div>
