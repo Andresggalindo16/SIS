@@ -14,8 +14,8 @@ if (isset($_POST['add_product'])) {
     $p_name  = remove_junk($db->escape($_POST['name']));
     /* $p_cat   = remove_junk($db->escape($_POST['product-categorie'])); */
     $p_qty   = remove_junk($db->escape($_POST['quantity']));
-    $p_buy   = remove_junk($db->escape($_POST['buying_price']));
-    $p_sale  = remove_junk($db->escape($_POST['saleing_price']));
+    $p_buy   = remove_junk($db->escape($_POST['buy_price']));
+    $p_sale  = remove_junk($db->escape($_POST['sale_price']));
     $p_label = remove_junk($db->escape($_POST['label']));
     $p_satus_buy  = remove_junk($db->escape($_POST['status_buy']));
     $p_satus_sale = remove_junk($db->escape($_POST['status_sale']));
@@ -32,6 +32,7 @@ if (isset($_POST['add_product'])) {
     $p_unidad_peso = remove_junk($db->escape($_POST['unidad_peso']));
     $p_tipo_producto = remove_junk($db->escape($_POST['tipo_producto']));
     $p_nota      = remove_junk($db->escape($_POST['nota']));
+    $p_iva      = remove_junk($db->escape($_POST['iva']));
     
     if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
       $media_id = '0';
@@ -40,12 +41,14 @@ if (isset($_POST['add_product'])) {
     }
     $date    = make_date();
     $query  = "INSERT INTO products (";
-    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, unidad_volumen, unidad_peso, tipo_producto, nota, almacen";
+    $query .= " iva,name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, unidad_volumen, unidad_peso, tipo_producto, nota, almacen";
     $query .= ") VALUES (";
-    $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', 
-                '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_unidad_volumen}', '{$p_tipo_producto}', 
-                '{$p_nota}', '{$p_volumen}', '{$p_unidad_peso}'";
+    $query .= " '{$p_iva}', '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', 
+                '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_unidad_volumen}', '{$p_unidad_peso}', '{$p_tipo_producto}', 
+                '{$p_nota}', '{$p_almacen}'";
     $query .= ")";
+   /*  echo $query;
+    exit; */
     /* $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'"; */
     if ($db->query($query)) {
       $session->msg('s', "Producto agregado exitosamente. ");
@@ -142,7 +145,7 @@ if (isset($_POST['add_product'])) {
                   <i class="glyphicon glyphicon-usd"></i>
                 </span>
                 <!-- cambio de name -->
-                <select class="form-control" name="IVA"> 
+                <select class="form-control" name="iva"> 
                   <option value="">Aplica IVA</option>
                   <option value="si">SI</option>
                   <option value="no">NO</option>
@@ -164,7 +167,7 @@ if (isset($_POST['add_product'])) {
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-usd"></i>
                     </span>
-                    <input type="number" class="form-control" name="buying_price" placeholder="Precio de compra">
+                    <input type="number" class="form-control" name="buy_price" placeholder="Precio de compra">
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -172,7 +175,7 @@ if (isset($_POST['add_product'])) {
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-usd"></i>
                     </span>
-                    <input type="number" class="form-control" name="saleing_price" placeholder="Precio de venta">
+                    <input type="number" class="form-control" name="sale_price" placeholder="Precio de venta">
                   </div>
                 </div>
               </div>

@@ -53,7 +53,7 @@
                 <td class="text-center"> <?php echo ($product['status_sale']); ?></td>
                 <td class="text-center"> <?php echo ($product['status_buy']); ?></td>
                 <td class="text-center"> <?php echo ($product['iva']); ?></td>
-                <td class="text-center"> <?php echo ($product['store']); ?></td>
+                <td class="text-center"> <?php echo ($product['almacen']); ?></td>
              <td class="text-center"> <?php echo (($product['tipo_producto'])); ?></td>
              <td class="text-center"> <?php echo (($product['nota'])) ?></td>
              <td class="text-center"> <?php echo read_date($product['date']); ?></td>

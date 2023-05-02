@@ -22,8 +22,8 @@ if (isset($_POST['product'])) {
     $p_name  = remove_junk($db->escape($_POST['name']));
     /* $p_cat   = remove_junk($db->escape($_POST['product-categorie'])); */
     $p_qty   = remove_junk($db->escape($_POST['quantity']));
-    $p_buy   = remove_junk($db->escape($_POST['buying_price']));
-    $p_sale  = remove_junk($db->escape($_POST['saleing_price']));
+    $p_buy   = remove_junk($db->escape($_POST['buy_price']));
+    $p_sale  = remove_junk($db->escape($_POST['sale_price']));
     $p_label = remove_junk($db->escape($_POST['label']));
     $p_satus_buy  = remove_junk($db->escape($_POST['status_buy']));
     $p_satus_sale = remove_junk($db->escape($_POST['status_sale']));
@@ -252,7 +252,7 @@ if (isset($_POST['product'])) {
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-usd"></i>
                   </span>
-                  <input type="number" class="form-control" name="status_buy" value="<?php echo ($product['status_buy']);?>" placeholder="Precio de compra">
+                  <input type="number" class="form-control" name="status_buy" value="<?php echo ($product['buy_price']);?>" placeholder="Precio de compra">
                 </div>
               </div>
               <div class="col-md-4">
@@ -260,7 +260,7 @@ if (isset($_POST['product'])) {
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-usd"></i>
                   </span>
-                  <input type="number" class="form-control" name="status_sale" value="<?php echo ($product['status_sale']);?>" placeholder="Precio de venta">
+                  <input type="number" class="form-control" name="status_sale" value="<?php echo ($product['sale_price']);?>" placeholder="Precio de venta">
                 </div>
               </div>
             </div>

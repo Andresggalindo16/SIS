@@ -210,7 +210,7 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.iva,p.store,p.date,p.status_buy,p.status_sale,p.label,p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date, p.deseado,
+     $sql  =" SELECT p.iva,p.almacen,p.date,p.status_buy,p.status_sale,p.label,p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date, p.deseado,
      p.stock_min,
      p.peso,
      p.unidad_peso,
