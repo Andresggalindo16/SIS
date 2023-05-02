@@ -8,7 +8,7 @@ $all_photo = find_all('media');
 ?>
 <?php
 if (isset($_POST['add_product'])) {
-  $req_fields = array('name', 'product-quantity', 'buying-price', 'saleing-price');
+  $req_fields = array('name', 'quantity', 'buying_price', 'saleing_price');
   validate_fields($req_fields);
   if (empty($errors)) {
     $p_name  = remove_junk($db->escape($_POST['name']));
@@ -19,7 +19,7 @@ if (isset($_POST['add_product'])) {
     $p_label = remove_junk($db->escape($_POST['label']));
     $p_satus_buy  = remove_junk($db->escape($_POST['status_buy']));
     $p_satus_sale = remove_junk($db->escape($_POST['status_sale']));
-    /* $p_almacen = remove_junk($db->escape($_POST['almacen'])); */
+    $p_almacen = remove_junk($db->escape($_POST['almacen']));
     $p_deseado   = remove_junk($db->escape($_POST['deseado']));
     $p_stock_min = remove_junk($db->escape($_POST['stock_min']));
     $p_peso      = remove_junk($db->escape($_POST['peso']));
@@ -28,6 +28,7 @@ if (isset($_POST['add_product'])) {
     $p_ancho     = remove_junk($db->escape($_POST['ancho']));
     $profundo    = remove_junk($db->escape($_POST['profundo']));
     $p_unidad_longitud = remove_junk($db->escape($_POST['unidad_longitud']));
+    $p_unidad_volumen = remove_junk($db->escape($_POST['unidad_volumen']));
     $p_tipo_producto = remove_junk($db->escape($_POST['tipo_producto']));
     $p_nota      = remove_junk($db->escape($_POST['nota']));
     
@@ -38,10 +39,10 @@ if (isset($_POST['add_product'])) {
     }
     $date    = make_date();
     $query  = "INSERT INTO products (";
-    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, tipo_producto, nota";
+    $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, unidad_volumen, tipo_producto, nota";
     $query .= ") VALUES (";
     $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', 
-               '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_tipo_producto}', '{$p_nota}'";
+               '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', {$p_unidad_volumen}, '{$p_tipo_producto}', '{$p_nota}'";
     $query .= ")";
     $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'";
     if ($db->query($query)) {
@@ -153,7 +154,7 @@ if (isset($_POST['add_product'])) {
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-shopping-cart"></i>
                     </span>
-                    <input type="number"  min="1" pattern="^[0-9]+" class="form-control" name="product-quantity" placeholder="Cantidad">
+                    <input type="number"  min="1" pattern="^[0-9]+" class="form-control" name="quantity" placeholder="Cantidad">
                   </div>
                 </div>
                 <div class="col-md-4">

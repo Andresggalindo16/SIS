@@ -27,7 +27,7 @@ if (isset($_POST['product'])) {
     $p_label = remove_junk($db->escape($_POST['label']));
     $p_satus_buy  = remove_junk($db->escape($_POST['status_buy']));
     $p_satus_sale = remove_junk($db->escape($_POST['status_sale']));
-    /* $p_almacen = remove_junk($db->escape($_POST['almacen'])); */
+    $p_almacen = remove_junk($db->escape($_POST['almacen']));
     $p_deseado   = remove_junk($db->escape($_POST['deseado']));
     $p_stock_min = remove_junk($db->escape($_POST['stock_min']));
     $p_peso      = remove_junk($db->escape($_POST['peso']));
@@ -35,7 +35,9 @@ if (isset($_POST['product'])) {
     $p_alto      = remove_junk($db->escape($_POST['alto']));
     $p_ancho     = remove_junk($db->escape($_POST['ancho']));
     $profundo    = remove_junk($db->escape($_POST['profundo']));
+    $p_iva    = remove_junk($db->escape($_POST['iva']));
     $p_unidad_longitud = remove_junk($db->escape($_POST['unidad_longitud']));
+    $p_unidad_volumen = remove_junk($db->escape($_POST['unidad_volumen']));
     $p_tipo_producto = remove_junk($db->escape($_POST['tipo_producto']));
     $p_nota      = remove_junk($db->escape($_POST['nota']));
     if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
@@ -60,14 +62,17 @@ if (isset($_POST['product'])) {
     ,alto = '{$p_alto}' 
     ,ancho = '{$p_ancho}' 
     ,profundo = '{$profundo}' 
-    ,unidad_longitud = '{$p_unidad_longitud}' 
+    ,unidad_longitud = '{$p_unidad_longitud}'
+    ,unidad_volumen = '{$p_unidad_volumen}'
     ,tipo_producto = '{$p_tipo_producto}' 
-    ,nota = '{$p_nota}' ";
+    ,nota = '{$p_nota}'
+    ,almacen = '{$p_almacen}'
+    ,iva = '{$p_iva}' ";
     $query  .= " WHERE id ='{$product['id']}'";
     /* echo $query;
     exit; */
     $result = $db->query($query);
-    if ($result && $db->affected_rows() === 1) {
+    if ($result && $db->affected_rows() === 0) {
       $session->msg('s', "Producto ha sido actualizado. ");
       redirect('product.php', false);
     } else {
@@ -190,9 +195,9 @@ if (isset($_POST['product'])) {
                 <i class="glyphicon glyphicon-list-alt"></i>
               </span>
               <select class="form-control" name="status_sale">
-                <option <?php echo $product ==  '' ? 'selected' : '' ?> value="">Estado (venta)</option>
-                <option <?php echo $product ==  'activo' ? 'selected' : '' ?> value="activo">Activa</option>
-                <option <?php echo $product ==  'inactivo' ? 'selected' : '' ?> value="inactivo">Inactiva</option>
+                <option <?php echo $product['status_sale'] ==  '' ? 'selected' : '' ?> value="">Estado (venta)</option>
+                <option <?php echo $product['status_sale'] ==  'activo' ? 'selected' : '' ?> value="activo">Activa</option>
+                <option <?php echo $product['status_sale'] ==  'inactivo' ? 'selected' : '' ?> value="inactivo">Inactiva</option>
               </select>
             </div>
           </div>
@@ -202,9 +207,9 @@ if (isset($_POST['product'])) {
                 <i class="glyphicon glyphicon-usd"></i>
               </span>
               <select class="form-control" name="status_buy">
-                <option <?php echo $product ==  '' ? 'selected' : '' ?> value="">Estado (compra)</option>
-                <option <?php echo $product ==  'En Venta' ? 'selected' : '' ?> value="En Venta">En Venta</option>
-                <option <?php echo $product ==  'Sin Stock' ? 'selected' : '' ?> value="Sin Stock">Sin Stock</option>
+                <option <?php echo $product['status_buy'] ==  '' ? 'selected' : '' ?> value="">Estado (compra)</option>
+                <option <?php echo $product['status_buy'] ==  'En Venta' ? 'selected' : '' ?> value="En Venta">En Venta</option>
+                <option <?php echo $product['status_buy'] ==  'Sin Stock' ? 'selected' : '' ?> value="Sin Stock">Sin Stock</option>
               </select>
             </div>
           </div>
@@ -214,7 +219,7 @@ if (isset($_POST['product'])) {
                 <i class="glyphicon glyphicon-folder-close"></i>
               </span>
               <!-- cambio de name -->
-              <input type="text" class="form-control" name="almacen" placeholder="Almacen">
+              <input type="text" class="form-control" name="almacen" placeholder="Almacen" value="<?php echo $product['almacen'] ?>">
             </div>
           </div>
           <div class="form-group">
@@ -223,10 +228,10 @@ if (isset($_POST['product'])) {
                 <i class="glyphicon glyphicon-usd"></i>
               </span>
               <!-- cambio de name -->
-              <select class="form-control" name="IVA">
-                <option <?php echo $product ==  '' ? 'selected' : '' ?> value="">Aplica IVA</option>
-                <option <?php echo $product ==  'si' ? 'selected' : '' ?> value="si">SI</option>
-                <option <?php echo $product ==  'no' ? 'selected' : '' ?> value="no">NO</option>
+              <select class="form-control" name="iva">
+                <option <?php echo $product['iva'] ==  '' ? 'selected' : '' ?> value="">Aplica IVA</option>
+                <option <?php echo $product['iva'] ==  'si' ? 'selected' : '' ?> value="si">SI</option>
+                <option <?php echo $product['iva'] ==  'no' ? 'selected' : '' ?> value="no">NO</option>
               </select>
             </div>
           </div>
@@ -296,11 +301,11 @@ if (isset($_POST['product'])) {
                   </span>
                   <select class="form-control" name="unidad_peso">
                     <option value="">Unidad</option>
-                    <option <?php echo $product ==  'Kilo' ? 'selected' : '' ?> value="Kilo">Kilogramo</option>
-                    <option <?php echo $product ==  'Gramo' ? 'selected' : '' ?> value="Gramo">Gramo</option>
-                    <option <?php echo $product ==  'Tonelada' ? 'selected' : '' ?> value="Tonelada">Tonelada</option>
-                    <option <?php echo $product ==  'Miligramos' ? 'selected' : '' ?> value="Miligramos">Miligramos</option>
-                    <option <?php echo $product ==  'Libra' ? 'selected' : '' ?> value="Libra">Libra</option>
+                    <option <?php echo $product['unidad_peso'] ==  'Kilo' ? 'selected' : '' ?> value="Kilo">Kilogramo</option>
+                    <option <?php echo $product['unidad_peso'] ==  'Gramo' ? 'selected' : '' ?> value="Gramo">Gramo</option>
+                    <option <?php echo $product['unidad_peso'] ==  'Tonelada' ? 'selected' : '' ?> value="Tonelada">Tonelada</option>
+                    <option <?php echo $product['unidad_peso'] ==  'Miligramos' ? 'selected' : '' ?> value="Miligramos">Miligramos</option>
+                    <option <?php echo $product['unidad_peso'] ==  'Libra' ? 'selected' : '' ?> value="Libra">Libra</option>
                   </select>
                 </div>
               </div>
@@ -323,10 +328,10 @@ if (isset($_POST['product'])) {
                   </span>
                   <select class="form-control" name="unidad_volumen">
                     <option value="">Unidad</option>
-                    <option <?php echo $product ==  'cm3' ? 'selected' : '' ?> value="cm3">Centimetro Cúbico</option>
-                    <option <?php echo $product ==  'm3' ? 'selected' : '' ?> value="m3">Metro Cúbico</option>
-                    <option <?php echo $product ==  'Onza' ? 'selected' : '' ?> value="Onza">Onza</option>
-                    <option <?php echo $product ==  'Galon' ? 'selected' : '' ?> value="Galon">Galón</option>
+                    <option <?php echo $product['unidad_volumen'] ==  'cm3' ? 'selected' : '' ?> value="cm3">Centimetro Cúbico</option>
+                    <option <?php echo $product['unidad_volumen'] ==  'm3' ? 'selected' : '' ?> value="m3">Metro Cúbico</option>
+                    <option <?php echo $product['unidad_volumen'] ==  'Onza' ? 'selected' : '' ?> value="Onza">Onza</option>
+                    <option <?php echo $product['unidad_volumen'] ==  'Galon' ? 'selected' : '' ?> value="Galon">Galón</option>
                   </select>
                 </div>
               </div>
@@ -355,7 +360,7 @@ if (isset($_POST['product'])) {
                   <span class="input-group-addon">
                     <i class=" glyphicon glyphicon-resize-full"></i>
                   </span>
-                  <input type="number" class="form-control" name="profundo" <?php echo $product['profundo']; ?> placeholder="Longitud Profunda">
+                  <input type="number" class="form-control" name="profundo" value="<?php echo $product['profundo']; ?>" placeholder="Longitud Profunda">
                 </div>
               </div>
               <div class="col-md-3">
@@ -365,11 +370,11 @@ if (isset($_POST['product'])) {
                   </span>
                   <select class="form-control" name="unidad_longitud">
                     <option value="">Unidad de medida</option>
-                    <option <?php echo $product ==  'Metros' ? 'selected' : '' ?> value="Metros">m</option>
-                    <option <?php echo $product ==  'Centimetros' ? 'selected' : '' ?> value="Centimetros">cm</option>
-                    <option <?php echo $product ==  'Milimetros' ? 'selected' : '' ?> value="Milimetros">mm</option>
-                    <option <?php echo $product ==  'Pie' ? 'selected' : '' ?> value="Pie">pie</option>
-                    <option <?php echo $product ==  'Pulgada' ? 'selected' : '' ?> value="Pulgada">pulgada</option>
+                    <option <?php echo $product['unidad_longitud'] ==  'Metros' ? 'selected' : '' ?> value="Metros">m</option>
+                    <option <?php echo $product['unidad_longitud'] ==  'Centimetros' ? 'selected' : '' ?> value="Centimetros">cm</option>
+                    <option <?php echo $product['unidad_longitud'] ==  'Milimetros' ? 'selected' : '' ?> value="Milimetros">mm</option>
+                    <option <?php echo $product['unidad_longitud'] ==  'Pie' ? 'selected' : '' ?> value="Pie">pie</option>
+                    <option <?php echo $product['unidad_longitud'] ==  'Pulgada' ? 'selected' : '' ?> value="Pulgada">pulgada</option>
                   </select>
                 </div>
               </div>
@@ -381,9 +386,9 @@ if (isset($_POST['product'])) {
                 <i class="glyphicon glyphicon-tags"></i>
               </span>
               <select class="form-control" name="tipo_producto">
-                <option <?php echo $product == 'natural_producto' ? 'selected' : '' ?> value="natural_producto">Naturaleza del Producto</option>
-                <option <?php echo $product == 'materia_prima' ? 'selected' : '' ?> value="materia_prima">Materia Prima</option>
-                <option <?php echo $product == 'producto' ? 'selected' : ''  ?> value="producto">Producto</option>
+                <option <?php echo $product['tipo_producto'] == 'natural_producto' ? 'selected' : '' ?> value="natural_producto">Naturaleza del Producto</option>
+                <option <?php echo $product['tipo_producto'] == 'materia_prima' ? 'selected' : '' ?> value="materia_prima">Materia Prima</option>
+                <option <?php echo $product['tipo_producto'] == 'producto' ? 'selected' : ''  ?> value="producto">Producto</option>
               </select>
             </div>
 
@@ -393,7 +398,7 @@ if (isset($_POST['product'])) {
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-th-large"></i>
               </span>
-              <textarea type="text" class="form-control" name="nota" <?php echo $product['nota']  ?> placeholder="Nota Adicional"></textarea>
+              <textarea type="text" class="form-control" name="nota" placeholder="Nota Adicional"><?php echo $product['nota'] ?></textarea>
             </div>
           </div> <button type="submit" name="product" class="btn btn-danger">Actualizar</button>
         </form>
