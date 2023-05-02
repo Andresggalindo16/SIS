@@ -42,9 +42,9 @@ if (isset($_POST['add_product'])) {
     $query .= " name,quantity,buy_price,sale_price,media_id,date,label, status_buy,status_sale, deseado, stock_min, peso, volumen, alto, ancho, profundo, unidad_longitud, unidad_volumen, tipo_producto, nota";
     $query .= ") VALUES (";
     $query .= " '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$media_id}', '{$date}', '{$p_label}', 
-               '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', {$p_unidad_volumen}, '{$p_tipo_producto}', '{$p_nota}'";
+               '{$p_satus_buy}', '{$p_satus_sale}', '{$p_deseado}', '{$p_stock_min}', '{$p_peso}', '{$p_volumen}', '{$p_alto}', '{$p_ancho}', '{$profundo}', '{$p_unidad_longitud}', '{$p_unidad_volumen}', '{$p_tipo_producto}', '{$p_nota}'";
     $query .= ")";
-    $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'";
+    /* $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}'"; */
     if ($db->query($query)) {
       $session->msg('s', "Producto agregado exitosamente. ");
       redirect('add_product.php', false);
