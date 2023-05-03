@@ -103,7 +103,7 @@ if (isset($_POST['add_product'])) {
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-tag"></i>
                 </span>
-                <input type="text" class="form-control" name="label" placeholder="Etiqueta">
+                <input type="text" class="form-control" name="label" placeholder="codigo">
               </div>
             </div>
             <div class="form-group">
@@ -115,6 +115,7 @@ if (isset($_POST['add_product'])) {
                   <option value="">Estado (venta)</option>
                   <option value="activo">Activa</option>
                   <option value="inactiva">Inactiva</option>
+                  <option value="no aplica">No aplica</option>
                 </select>
               </div>
             </div>
@@ -125,8 +126,8 @@ if (isset($_POST['add_product'])) {
                 </span>
                 <select class="form-control" name="status_buy">
                   <option value="">Estado (compra)</option>
-                  <option value="En Venta">En Venta</option>
-                  <option value="Sin Stock">Sin Stock</option>
+                  <option value="En compra">En compra</option>
+                  <option value="Fuera de compra">Fuera de compra</option>
                 </select>
               </div>
             </div>
@@ -245,6 +246,7 @@ if (isset($_POST['add_product'])) {
                     </span>
                     <select class="form-control" name="unidad_volumen">
                       <option value="">Unidad</option>
+                      <option value="no aplica">no aplica</option>
                       <option value="cm3">Centimetro Cúbico</option>
                       <option value="m3">Metro Cúbico</option>
                       <option value="Onza">Onza</option>

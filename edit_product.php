@@ -188,7 +188,7 @@ if (isset($_POST['product'])) {
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-tag"></i>
               </span>
-              <input type="text" class="form-control" name="label" value="<?php echo ($product['label']); ?>" placeholder="Etiqueta">
+              <input type="text" class="form-control" name="label" value="<?php echo ($product['label']); ?>" placeholder="Código">
             </div>
           </div>
           <div class="form-group">
@@ -200,6 +200,7 @@ if (isset($_POST['product'])) {
                 <option <?php echo $product['status_sale'] ==  '' ? 'selected' : '' ?> value="">Estado (venta)</option>
                 <option <?php echo $product['status_sale'] ==  'activo' ? 'selected' : '' ?> value="activo">Activa</option>
                 <option <?php echo $product['status_sale'] ==  'inactivo' ? 'selected' : '' ?> value="inactivo">Inactiva</option>
+                <option <?php echo $product['status_sale'] ==  'no aplica' ? 'selected' : '' ?> value="inactivo">No aplica</option>
               </select>
             </div>
           </div>
@@ -210,8 +211,8 @@ if (isset($_POST['product'])) {
               </span>
               <select class="form-control" name="status_buy">
                 <option <?php echo $product['status_buy'] ==  '' ? 'selected' : '' ?> value="">Estado (compra)</option>
-                <option <?php echo $product['status_buy'] ==  'En Venta' ? 'selected' : '' ?> value="En Venta">En Venta</option>
-                <option <?php echo $product['status_buy'] ==  'Sin Stock' ? 'selected' : '' ?> value="Sin Stock">Sin Stock</option>
+                <option <?php echo $product['status_buy'] ==  'compra' ? 'selected' : '' ?> value="En compra">En compra</option>
+                <option <?php echo $product['status_buy'] ==  'no compra' ? 'selected' : '' ?> value="Fuera de compra">Fuera de compra</option>
               </select>
             </div>
           </div>
@@ -330,6 +331,7 @@ if (isset($_POST['product'])) {
                   </span>
                   <select class="form-control" name="unidad_volumen">
                     <option value="">Unidad</option>
+                    <option <?php echo $product['unidad_volumen'] ==  'no aplica' ? 'selected' : '' ?> value="cm3">no aplica</option>
                     <option <?php echo $product['unidad_volumen'] ==  'cm3' ? 'selected' : '' ?> value="cm3">Centimetro Cúbico</option>
                     <option <?php echo $product['unidad_volumen'] ==  'm3' ? 'selected' : '' ?> value="m3">Metro Cúbico</option>
                     <option <?php echo $product['unidad_volumen'] ==  'Onza' ? 'selected' : '' ?> value="Onza">Onza</option>

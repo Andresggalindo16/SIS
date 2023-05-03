@@ -22,13 +22,12 @@
             <thead>
               <tr>
                 <th class="text-center" style="width: 50px;">Ref</th>                
-                <th> Descripción </th>
-                
+                <th> Descripción </th>                
                 <th class="text-center" style="width: 10%;"> Stock </th>
-                <th class="text-center" style="width: 10%;"> Etiqueta </th>
+                <th class="text-center" style="width: 10%;"> Codigo </th>
                 <th class="text-center" style="width: 10%;"> Precio de venta </th>
                 <th class="text-center" style="width: 10%;"> Precio de compra </th>
-                <th class="text-center" style="width: 10%;"> IVA </th>
+                <th class="text-center" style="width: 10%;"> ¿Aplica IVA? </th>
                 <th class="text-center" style="width: 10%;"> Almacen por defecto </th>
            <!-- <th class="text-center" style="width: 10%;"> Peso </th> -->
            <!--  <th class="text-center" style="width: 10%;"> Volumen </th> -->
@@ -46,12 +45,11 @@
               <?php foreach ($products as $product):?>
               <tr>
                 <td class="text-center"><?php echo count_id();?></td>                
-                <td> <?php echo remove_junk($product['name']); ?></td>
-               
+                <td> <?php echo remove_junk($product['name']); ?></td>               
                 <td class="text-center"> <?php echo ($product['quantity']); ?></td>
                 <td class="text-center"> <?php echo ($product['label']); ?></td>
-                <td class="text-center"> <?php echo ($product['status_sale']); ?></td>
-                <td class="text-center"> <?php echo ($product['status_buy']); ?></td>
+                <td class="text-center"> <?php echo ($product['buy_price']); ?></td>
+                <td class="text-center"> <?php echo ($product['sale_price']); ?></td>
                 <td class="text-center"> <?php echo ($product['iva']); ?></td>
                 <td class="text-center"> <?php echo ($product['almacen']); ?></td>
              <td class="text-center"> <?php echo (($product['tipo_producto'])); ?></td>
