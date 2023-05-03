@@ -74,7 +74,7 @@ if (isset($_POST['product'])) {
     /* echo $query;
     exit; */
     $result = $db->query($query);
-    if ($result && $db->affected_rows() === 0) {
+    if ($result && $db->affected_rows() === 1 || $db->affected_rows() === 0) {
       $session->msg('s', "Producto ha sido actualizado. ");
       redirect('product.php', false);
     } else {
